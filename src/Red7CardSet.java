@@ -97,26 +97,9 @@ public class Red7CardSet {
          * Compare Orange Rule
          */
         else if(color.equals("orange")){
-            int myMatchingCardCount = 1;
-            for(int i=0; i<cardset.length; i+=myMatchingCardCount) {
-                for (int j = i + 1; j < cardset.length; j++) {
-                    if(get(i)!=null && get(j)!=null) {
-                        if (get(i).getNumber() == get(j).getNumber()) {
-                            myMatchingCardCount++;
-                        }
-                    }
-                }
-            }
-            int opponentMatchingCardCount = 1;
-            for(int i=0; i<rs.getSize(); i+=opponentMatchingCardCount) {
-                for (int j = i + 1; j < rs.getSize(); j++) {
-                    if(rs.get(i)!=null && rs.get(j)!=null) {
-                        if (rs.get(i).getNumber() == rs.get(j).getNumber()) {
-                            opponentMatchingCardCount++;
-                        }
-                    }
-                }
-            }
+            
+            int myMatchingCardCount = getMatchingCardCount(this.cardset, this.getSize());
+            int opponentMatchingCardCount = getMatchingCardCount(rs.getCardset(), rs.getSize());
 
             value = myMatchingCardCount - opponentMatchingCardCount;
             if(value==0){
@@ -180,6 +163,20 @@ public class Red7CardSet {
             }
         }
         return value;
+    }
+
+    private int getMatchingCardCount(Red7Card[] cardSet, int cardsetSize) {
+        int matchingCardCount = 1;
+        for(int i=0; i<cardsetSize; i+=matchingCardCount) {
+            for (int j = i + 1; j < cardsetSize; j++) {
+                if(cardSet[i]!=null && cardSet[j]!=null) {
+                    if (cardSet[i].getNumber() == cardSet[j].getNumber()) {
+                        matchingCardCount++;
+                    }
+                }
+            }
+        }
+        return matchingCardCount;
     }
 
     private int[] getBelowFourValue(Red7Card[] cardSet, int cardsetSize) {
