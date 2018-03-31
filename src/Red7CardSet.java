@@ -82,6 +82,9 @@ public class Red7CardSet {
     public int compareRule(Red7CardSet rs, String color){
         int value = 0;
 
+        /**
+         * Compare Red rule
+         */
         if(color.equals("red")){
             if(cardset[0]!=null&& rs.get(0)!=null){
                 Red7Card myCard = cardset[0];
@@ -90,6 +93,9 @@ public class Red7CardSet {
                 value = myCard.compareTo(opponentCard);
             }
         }
+        /**
+         * Compare Orange Rule
+         */
         else if(color.equals("orange")){
             int myMatchingCardCount = 1;
             for(int i=0; i<cardset.length; i+=myMatchingCardCount) {
@@ -117,6 +123,9 @@ public class Red7CardSet {
                 value = get(0).compareTo(rs.get(0));
             }
         }
+        /**
+         * Compare Yellow rule
+         */
         else if(color.equals("yellow")){
 
             int myMatchingColorValue = getMaxValue(this.cardset, this.getSize());
@@ -124,6 +133,9 @@ public class Red7CardSet {
 
             value = myMatchingColorValue - opponentMatchingColorValue;
         }
+        /**
+         * Compare Green rule
+         */
         else if(color.equals("green")){
 
             int myEvenCardValue = getEvenCardValue(this.cardset, this.getSize());
@@ -131,6 +143,9 @@ public class Red7CardSet {
 
             value = myEvenCardValue - opponentEvenCardValue;
         }
+        /**
+         * Compare Blue rule
+         */
         else if(color.equals("blue")){
 
             int myDifferentColorCardsValue = getDifferentColorCardsValue(this.cardset, this.getSize());
@@ -138,6 +153,9 @@ public class Red7CardSet {
 
             value = myDifferentColorCardsValue - opponentDifferentColorCardsValue;
         }
+        /**
+         * Compare Indigo rule
+         */
         else if(color.equals("indigo")){
             int myStraightCards = getStraightCardsValue(this.cardset, this.getSize());
             int opponentStraightCards = getStraightCardsValue(rs.getCardset(), rs.getSize());
@@ -149,6 +167,9 @@ public class Red7CardSet {
             }
             value = myStraightCards - opponentStraightCards;
         }
+        /**
+         * Compare Violet rule
+         */
         else if(color.equals("violet")){
             int[] myBelowFourValue = getBelowFourValue(this.cardset, this.getSize());
             int[] opponentBelowFourValue = getBelowFourValue(rs.getCardset(), rs.getSize());
@@ -277,7 +298,7 @@ public class Red7CardSet {
     }
 
     public boolean isEmpty(){
-        return cardset.length == 0;
+        return backInd == 0;
     }
 
     @Override
